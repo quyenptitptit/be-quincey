@@ -1,7 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const postRouter = require("./routes/posts");
 
 // apis: ["./routes/*.js"],
 const options = {
@@ -44,7 +43,7 @@ function swaggerDocs(app, port) {
   //   res.send(swaggerSpec);
   // });
   app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
-  app.use("/posts", postRouter);
+  // app.use("/posts", postRouter);
 }
 
 module.exports = swaggerDocs;
