@@ -1,5 +1,5 @@
 const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUI = require("swagger-ui-express");
+const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 // apis: ["./routes/*.js"],
@@ -34,15 +34,15 @@ const swaggerSpec = swaggerJsdoc({
 });
 
 function swaggerDocs(app, port) {
-  // // Swagger Page
-  // app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  // Swagger Page
+  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  // // Documentation in JSON format
-  // app.get("/docs.json", (req, res) => {
-  //   res.setHeader("Content-Type", "application/json");
-  //   res.send(swaggerSpec);
-  // });
-  app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+  // Documentation in JSON format
+  app.get("/docs.json", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(swaggerSpec);
+  });
+  // app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   // app.use("/posts", postRouter);
 }
 
