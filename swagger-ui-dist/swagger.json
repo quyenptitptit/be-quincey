@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "https://be-quincey.vercel.app/api/v1"
+      "url": "/api/v1"
     }
   ],
   "tags": [

@@ -29,7 +29,7 @@ const options = {
   apis: ["./routes/*.js"],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJsdoc({definition: swaggerDocument, apis: ["./routes/*.js"]});
 
 function swaggerDocs(app, port) {
   // // Swagger Page
