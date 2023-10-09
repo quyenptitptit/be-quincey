@@ -1,6 +1,6 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
-const swaggerDocument = require("./swagger-ui-dist/swagger.json");
+const swaggerDocument = require("./swagger.json");
 const postRouter = require("./routes/posts");
 
 // apis: ["./routes/*.js"],
@@ -29,7 +29,10 @@ const options = {
   apis: ["./routes/*.js"],
 };
 
-const swaggerSpec = swaggerJsdoc({definition: swaggerDocument, apis: ["./routes/*.js"]});
+const swaggerSpec = swaggerJsdoc({
+  definition: swaggerDocument,
+  apis: ["./routes/*.js"],
+});
 
 function swaggerDocs(app, port) {
   // // Swagger Page
