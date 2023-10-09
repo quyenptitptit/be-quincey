@@ -40,7 +40,7 @@ function swaggerDocs(app, port) {
   //   res.setHeader("Content-Type", "application/json");
   //   res.send(swaggerSpec);
   // });
-  app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+  app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   app.use("/posts", postRouter);
 }
 
