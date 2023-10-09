@@ -4,6 +4,7 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const connectDB = require("./database/index");
 const route = require('./routes/index')
+const swaggerDocs = require('./swagger')
 
 dotenv.config()
 connectDB();
@@ -19,4 +20,5 @@ route(app)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on PORT ${process.env.PORT}`)
+    swaggerDocs(app, process.env.PORT)
 })
