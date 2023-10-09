@@ -15,16 +15,16 @@ const options = {
   apis: ["./routes/*.js"],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJsdoc({definition: swaggerDocument, apis: ["src/**/*.js"]});
 
 function swaggerDocs(app, port) {
   // Swagger Page
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // Documentation in JSON format
   app.get("/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    res.send(swaggerDocument);
+    res.send(swaggerSpec);
   });
 }
 
