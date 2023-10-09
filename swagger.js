@@ -1,6 +1,7 @@
 const swaggerJsdoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-const swaggerDocument = require('./swagger-ui-dist/swagger.json')
+const swaggerUI = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-ui-dist/swagger.json");
+const postRouter = require("./routes/posts");
 
 // apis: ["./routes/*.js"],
 const options = {
@@ -25,20 +26,22 @@ const options = {
     ],
   },
   // This is to call all the file
-  apis: ["src/**/*.js"],
+  apis: ["./routes/*.js"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app, port) {
-  // Swagger Page
-  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  // // Swagger Page
+  // app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  // Documentation in JSON format
-  app.get("/docs.json", (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
-  });
+  // // Documentation in JSON format
+  // app.get("/docs.json", (req, res) => {
+  //   res.setHeader("Content-Type", "application/json");
+  //   res.send(swaggerSpec);
+  // });
+  app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+  app.use("/posts", postRouter);
 }
 
 module.exports = swaggerDocs;
