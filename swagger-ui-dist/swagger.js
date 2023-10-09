@@ -35,12 +35,12 @@ const swaggerSpec = swaggerJsdoc({
 
 function swaggerDocs(app, port) {
   // Swagger Page
-  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Documentation in JSON format
   app.get("/docs.json", (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
+    res.send(swaggerDocument);
   });
   // app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
   // app.use("/posts", postRouter);
