@@ -15,7 +15,7 @@ const options = {
   apis: ["./routes/*.js"],
 };
 
-const swaggerSpec = swaggerJsdoc({definition: swaggerDocument, apis: ["src/**/*.js"]});
+const swaggerSpec = swaggerJsdoc(options);
 
 function swaggerDocs(app, port) {
   // Swagger Page
