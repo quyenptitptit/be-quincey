@@ -9,6 +9,18 @@ const exception = (e) => {
 };
 
 const userController = {
+  checkEmail: async (req, res) => {
+    try {
+      const { email } = req.body;
+      const mail = await User.findOne({ email: email });
+      if (!mail) {
+        return res.status(400).json({ error: "Email does not exist!" });
+      }
+      return res.status(200).json({ message: "" });
+    } catch (e) {
+      res.status(500).json(exception(e));
+    }
+  },
   registerUser: async (req, res) => {
     try {
       const { email, password, fullname, phonenumber } = req.body;

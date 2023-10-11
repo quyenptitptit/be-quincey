@@ -22,6 +22,16 @@ const orderController = {
     }
   },
 
+  getByCustomer: async (req, res) => {
+    try {
+      const orders = await Order.find({customer: req.query.customer}).populate({ path: "items", populate: { path: "product" } })
+      .populate("customer");
+      res.status(200).json({ message: "Get order by customer", data: orders });
+    } catch (e) {
+      res.status(500).json(exception(e));
+    }
+  },
+
   getById: async (req, res) => {
     try {
       const order = await Order.findById(req.params.id)
